@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='jzon',
-    version='0.3',
+    version='0.4.0',
     py_modules=['jzon'],
     install_requires=[
         'Click',

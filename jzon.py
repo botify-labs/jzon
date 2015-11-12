@@ -12,10 +12,14 @@ import click
 @click.argument('input', type=click.File('r'))
 def jzon(indent, lines, sort_keys, input):
     separators = (',', ': ') if indent else None
-    if not lines:
-        d = json.load(input)
-        click.echo(json.dumps(d, indent=indent, separators=separators, sort_keys=sort_keys))
-    else:
-        for line in input:
-            d = json.loads(line)
+    try:
+        if not lines:
+            d = json.load(input)
             click.echo(json.dumps(d, indent=indent, separators=separators, sort_keys=sort_keys))
+        else:
+            for line in input:
+                d = json.loads(line)
+                click.echo(json.dumps(d, indent=indent, separators=separators, sort_keys=sort_keys))
+    except IOError as ex:
+        if ex.errno != 32:
+            raise
