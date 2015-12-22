@@ -3,7 +3,7 @@ from setuptools import setup
 
 setup(
     name='jzon',
-    version='0.4.0',
+    version='0.4.1',
     py_modules=['jzon'],
     install_requires=[
         'Click',
@@ -16,4 +16,5 @@ setup(
     author_email='yves@botify.com',
     description='JSON Dumper',
     license='MIT',
+    url='https://github.com/botify-labs/jzon',
 )
