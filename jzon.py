@@ -9,7 +9,7 @@ import click
 @click.option('--indent', default=2, help='Indentation.')
 @click.option('-l', '--lines/--no-lines', help='One JSON object per line.')
 @click.option('-s', '--sort-keys/--no-sort-keys', help='Sort keys.')
-@click.argument('input', type=click.File('r'))
+@click.argument('input', type=click.File('r'), default='-')
 def jzon(indent, lines, sort_keys, input):
     separators = (',', ': ') if indent else None
     try:
