@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+import gzip
 import json
 import click
 
@@ -9,8 +9,10 @@ import click
 @click.option('--indent', default=2, help='Indentation.')
 @click.option('-l', '--lines/--no-lines', help='One JSON object per line.')
 @click.option('-s', '--sort-keys/--no-sort-keys', help='Sort keys.')
-@click.argument('input', type=click.File('r'), default='-')
+@click.argument('input', type=click.File('rb'), default='-')
 def jzon(indent, lines, sort_keys, input):
+    if input.name.endswith('gz'):
+        input = gzip.GzipFile(fileobj=input, filename=input.name)
     separators = (',', ': ') if indent else None
     try:
         if not lines:
